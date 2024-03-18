@@ -7,19 +7,31 @@ class Array
         end
         self
     end
+
+    def my_select(&prc)
+        arr=[]  
+        self.my_each do |ele|
+            if prc.call(ele)
+                arr<<ele
+            end
+        end
+        arr
+    end
+
+    def my_reject(&prc)
+        arr=[]
+        self.my_each do |ele|
+            if !prc.call(ele)
+                arr<<ele
+            end
+        end
+        arr
+    end
+
+    def my_any?(&prc)
+        
+    end
 end
 
-# return_value = [1, 2, 3].my_each do |num|
-#     puts num
-#    end.my_each do |num|
-#     puts num
-#    end
-#    # => 1
-#    #    2
-#    #    3
-#    #    1
-#    #    2
-#    #    3
-   
-#    p return_value  # => [1, 2, 3]
+
    
