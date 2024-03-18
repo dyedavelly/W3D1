@@ -58,24 +58,37 @@ class Array
     end
 
     def my_zip(*args)
-        col = args.length+1
+        col = args.length + 1
         row = self.length
-        res = Array.new(row) {Array.new(col)}
+        res = Array.new(row) {Array.new()}
         (0...row).each do |i|
-            (0...col).each do |j|
-                res[i]<<self[j]
-                res[i]<<args[i][j]
+            res[i] << self[i]
+            args.each do |arg|
+                res[i] << arg[i]
             end
         end
         res
     end
+
+    def my_rotate(n=1)
+        new_arr = self.dup
+        if n > 0
+            n.times do |i|
+                first = new_arr.shift
+                new_arr << first
+            end
+        else 
+            n = n.abs
+            n.times do |i|
+                first = new_arr.pop
+                new_arr.unshift(first)
+            end
+        end
+        new_arr 
+    end
 end
 
-a = [ 4, 5, 6 ]
-b = [ 7, 8, 9 ]
-[1, 2, 3].my_zip(a, b) # => [[1, 4, 7], [2, 5, 8], [3, 6, 9]]
-# a.my_zip([1,2], [8])   # => [[4, 1, 8], [5, 2, nil], [6, nil, nil]]
-# [1, 2].my_zip(a, b)
+
 
 
 
