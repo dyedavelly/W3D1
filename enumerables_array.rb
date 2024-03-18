@@ -86,10 +86,26 @@ class Array
         end
         new_arr 
     end
+
+    def my_join(sep="")
+        res = ""
+        self.each_with_index do |char, idx|
+            if idx!=self.length-1
+                res+=char+sep
+            else
+                res+=char
+            end
+        end
+        res
+    end
+
+    def my_reverse
+        res = []
+        i=self.length-1
+        while i>=0
+            res<<self[i]
+            i-=1
+        end
+        res
+    end
 end
-
-
-
-
-
-   
