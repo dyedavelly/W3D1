@@ -29,9 +29,36 @@ class Array
     end
 
     def my_any?(&prc)
-        
+        self.my_each do |ele|
+           return true if prc.call(ele)
+        end
+        false
+    end
+
+    def my_all?(&prc)
+        self.my_each do |ele|
+            return false if !prc.call(ele)
+         end
+         true
+    end
+
+    def my_flatten
+        if !self.is_a?(Array) 
+             [self]
+        end
+        arr = []
+        self.each do |val|
+            if val.is_a?(Array)
+                arr += val.my_flatten
+            else
+                arr << val
+            end
+        end     
+        arr
     end
 end
+
+
 
 
    
